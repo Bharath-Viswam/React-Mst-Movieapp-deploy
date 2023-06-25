@@ -23,7 +23,11 @@ app.get('/api/movies',async(req,res)=>{
     res.json(data)
 })
 
-
+app.get('/api/search/:qry',async(req,res)=>{
+    let qry = req.params.qry
+    var data= await movieModel.find({"moviename":{"$regex":qry}})
+    res.json(data) 
+})
 //update operation put
 
 app.put('/api/editmovies/:id',async(req,res)=>{
